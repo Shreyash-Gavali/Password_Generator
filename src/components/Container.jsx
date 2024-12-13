@@ -1,4 +1,5 @@
 import {useState,useEffect,useRef} from 'react';
+import CopyBtn from './CopyBtn'
 export default function Container()
 {
     
@@ -29,63 +30,138 @@ export default function Container()
    useEffect(()=>{
     const numbers = [0,1,2,3,4,5,6,7,8,9]
     const specialChars = ['!','@','#','$','%','^','&','*','(',')','-','_',"+","="]
+    const characters = [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N",
+        "O",
+        "P",
+        "Q",
+        "R",
+        "S",
+        "T",
+        "U",
+        "V",
+        "W",
+        "X",
+        "Y",
+        "Z",
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "n",
+        "o",
+        "p",
+        "q",
+        "r",
+        "s",
+        "t",
+        "u",
+        "v",
+        "w",
+        "x",
+        "y",
+        "z"
+    ]
+    let pass = "";
         for(let i=0;i<length;i++)
         {
             if(charAllowed === true && numbersAllowed === false)
             {
-                let rand = Math.floor(Math.random()*specialChars.length);
-                let pass = []; 
-               pass = pass + specialChars[rand];
-               console.log(pass)
-                setPass(pass)
+                let randSpecialChar = specialChars[Math.floor(Math.random()*specialChars.length)];
+                let randChar = characters[Math.floor(Math.random()*characters.length)];
+               pass+=randSpecialChar + randChar;
+               if(pass.length > length)
+                {
+                    pass = pass.slice(length-pass.length);
+                }
             }
             else if(numbersAllowed===true && charAllowed === false)
             {
-                let rand = Math.floor(Math.random()*numbers.length);
-                let pass = ""; 
-               pass= pass + numbers[rand];
-                setPass(pass)
-                console.log("Rand is"+rand);
-                console.log(String.fromCharCode(rand))
+                let randNum = numbers[Math.floor(Math.random()*numbers.length)];
+                let randChar = characters[Math.floor(Math.random()*characters.length)];
+                pass +=randNum+randChar;
+                if(pass.length > length)
+                    {
+                        pass = pass.slice(length-pass.length);
+                    }
+            }
+            else if(numbersAllowed === true && charAllowed === true)
+                {
+               
+                    let randNum = numbers[Math.floor(Math.random()*numbers.length)];
+                    let randChar = characters[Math.floor(Math.random()*characters.length)];
+                    let randSpecialChar = specialChars[Math.floor(Math.random()*specialChars.length)];
+                pass +=randNum+randChar+randSpecialChar
+                if(pass.length > length)
+                {
+                    pass = pass.slice(length-pass.length);
+                }
+                console.log(pass)
             }
             else
             {
-
+                
+                console.log(characters)
+                let randChar = characters[Math.floor(Math.random()*characters.length)];
+               pass += randChar;               
             }
         }
+        setPass(pass)
     
    },[length,charAllowed,numbersAllowed])
     // console.log(currentLength)
     return(
-        <div className=" w-5/12 rounded-md h-102 mt-20 flex flex-col justify-center items-center bg-white">
+        <div className="   md:w-[100vw] lg:w-5/12 rounded-md h-102 mt-20 flex flex-col justify-center items-center bg-white sm: w-[60vw]">
             <input type="text" 
-            className="border border-purple-500 rounded-sm w-[inherit] h-12 outline-purple-500 text-slate-950 indent-6 text-xl mt-10 font-[Poppins]"
+            className="border border-purple-500 rounded-sm w-[inherit] h-12 outline-purple-500 text-slate-950   sm: indent-2 md:indent-3 lg:indent-6  md: text-md lg:text-xl mt-10 font-[Poppins] shadow-lg shadow-[#663399] md: w-8/12 sm: text-md"
             id="passIPBox"
             readOnly={true}
             value={pass}
             placeholder='Password '
             ></input>
+            <CopyBtn pass={pass}/>
             <div className='flex justify-center items-center flex-col mt-5'>    
             </div>
-            <div className='mt-2 mb-3 flex flex-row justify-center items-center'>
-                <label className='text-xl me-5 font-[Poppins]'>Length : {length}</label>
+            <div className='mt-2 mb-3 flex md: flex-col lg:flex-row justify-center items-center w-[inherit]'>
+                <label className='sm: text-md md: text-lg lg:text-xl me-5 font-[Poppins]'>Length : {length}</label>
             <input type="range" min={1} max={20} id="length" ref={currentLength} onChange={changeLength} value={length}
-            className=' h-20 me-4' 
+            className=' sm:h-10 md: h-14 lg: h-20 me-4' 
             >
             </input>
             <label htmlFor="char"
-            className="text-xl font-[Poppins]"
+            className="sm: text-md md: text-lg lg:text-xl font-[Poppins]"
             >Special Characters</label>
             <input type="checkbox" 
-            className='ms-4 h-20 w-5'
+            className='ms-4 h-20 md: w-4 lg: w-5'
             id="char"
             onChange={changeChar}
             ref={char}
             ></input>
-            <label htmlFor="num" className='ms-4 text-xl font-[Poppins]'>Numbers</label>
+            <label htmlFor="num" className='ms-4 text-xl font-[Poppins] sm: text-md md: text-lg lg:text-xl '>Numbers</label>
             <input type="checkbox" id="num" onChange={changeNum} ref={num} 
-            className='ms-4 h-20 w-5'
-            
+            className='ms-4 h-20 w-5 dm: h-3 md: w-4 lg: w-5'
             ></input>
         </div>
         </div>
