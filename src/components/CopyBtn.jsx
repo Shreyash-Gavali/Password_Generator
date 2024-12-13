@@ -15,7 +15,7 @@ export default function CheckBox(props)
     }
     return(
         <>
-        <button type="button" className="bg-blue-500 text-white w-3/12 h-10 rounded-md text-xl mt-3" onClick={copyTextToClipboard}>Copy</button>
+        <button type="button" className="bg-blue-500 text-white  w-3/12 h-10 rounded-md sm: text-md md: text-lg lg:text-xl mt-4" onClick={copyTextToClipboard}>Copy</button>
         </>
     )
 }
