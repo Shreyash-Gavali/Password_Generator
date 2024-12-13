@@ -140,7 +140,7 @@ export default function Container()
     return(
         <div className=" sm: w-[90vw]  md:w-[100vw] lg:w-6/12 xl: w-8/12 xxl: w-9/12 rounded-md  sm: h-90 md: h-92 lg:h-102 mt-20 flex flex-col justify-center items-center bg-white ">
             <input type="text" 
-            className="sm: w-[70vw] border border-purple-500 rounded-sm lg:w-6/12 h-12 outline-purple-500 text-slate-950   sm: indent-2 md:indent-3 lg:indent-6  md: text-md lg:text-xl mt-10 font-[Poppins] shadow-lg shadow-[#663399] md: w-8/12 sm: text-md"
+            className="sm: w-[70vw] border border-slate-700 rounded-md lg:w-6/12 h-12 outline-slate-700 text-slate-950   sm: indent-2 md:indent-3 lg:indent-6  md: text-md lg:text-xl mt-10 font-[Poppins] shadow-lg shadow-slate-700 md: w-8/12 sm: text-md"
             id="passIPBox"
             readOnly={true}
             value={pass}
@@ -159,7 +159,7 @@ export default function Container()
             className="sm: text-md md: text-lg lg:text-xl font-[Poppins]"
             >Special Characters</label>
             <input type="checkbox" 
-            className='ms-4 lg: h-20 md: w-4 h-3 lg: w-5 '
+            className='ms-4 lg: h-20 md: w-4 h-4 lg: w-5 '
             id="char"
             onChange={changeChar}
             ref={char}
@@ -168,7 +168,7 @@ export default function Container()
             <label htmlFor="num" className='ms-4  font-[Poppins] sm: text-md md: text-lg lg:text-xl '>Numbers</label>
             <input type="checkbox" id="num" onChange={changeNum} ref={num} 
             disabled={length<2 ? true : false}
-            className='ms-4 h-20 w-5 dm: h-3 md: w-4 lg: w-5'
+            className='ms-4 h-20 w-5 dm: h-3 md: w-5 md: h-4 lg: w-5'
             ></input>
         </div>
         <h1 
