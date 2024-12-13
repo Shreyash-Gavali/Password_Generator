@@ -97,6 +97,11 @@ export default function Container()
                 {
                     pass = pass.slice(length-pass.length);
                 }
+                else if(length === 1)
+                    {
+                        pass=pass+randSpecialChar
+                    }
+                
             }
             else if(numbersAllowed===true && charAllowed === false)
             {
@@ -107,22 +112,27 @@ export default function Container()
                     {
                         pass = pass.slice(length-pass.length);
                     }
+                    else if(length === 1)
+                    {
+                        pass=pass+randNum
+                    }
             }
-            else if(numbersAllowed === true && charAllowed === true)
+            else if(numbersAllowed === true && charAllowed === true && char.current.disabled===false && num.current.disabled ===false)
                 {
                
                     let randNum = numbers[Math.floor(Math.random()*numbers.length)];
                     let randChar = characters[Math.floor(Math.random()*characters.length)];
                     let randSpecialChar = specialChars[Math.floor(Math.random()*specialChars.length)];
-                pass +=randNum+randChar+randSpecialChar
-                if(pass.length > length)
-                {
+                    pass +=randNum+randChar+randSpecialChar
+                    if(pass.length > length)
+                        {
                     pass = pass.slice(length-pass.length);
                 }
-                else
-                {
-                    pass 
-                }
+                else if(length === 1)
+                    {
+                        pass=pass.slice(-1)
+                    }
+                    
                 console.log(pass)
             }
             else
@@ -130,7 +140,9 @@ export default function Container()
                 
                 console.log(characters)
                 let randChar = characters[Math.floor(Math.random()*characters.length)];
-               pass += randChar;               
+              
+                pass += randChar; 
+
             }
         }
         setPass(pass)
